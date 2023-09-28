@@ -1,7 +1,10 @@
+import dotenv  from "dotenv"
 import express from "express";
 import mongoose from "mongoose";
 import router from "./routes/user-routes.js";
 import blogRouter from "./routes/blog-routes.js";
+
+dotenv.config()
 
 const app = express();
 
@@ -12,7 +15,7 @@ app.use("/api/blog", blogRouter)
 
 mongoose
     .connect(
-        "mongodb+srv://aamirer:Nw6FRdGlqzn6YUje@cluster0.wkcg3yh.mongodb.net/Blog?retryWrites=true&w=majority"
+        process.env.URI
     )
     .then(() => app.listen(5000))
     .then(() => {
